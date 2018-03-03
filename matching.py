@@ -1,6 +1,6 @@
 
-sequences = ["abcefg", "1c234e"]
-target = "abcde"
+sequences = ["9121212121091212", "1212121212", "1292126626"]
+target = ""
 
 
 def print_matrices(M):
@@ -95,12 +95,12 @@ def iterate_mat(seq, tar, mat, inc, gap, bestalign):
         for j in range(1, len(mat[0])):
             if seq[j-1] == tar[i-1]:
                 if bestalign:
-                    mat[i][j] = max(max_around(mat, i, j) + i - 1, 0)
+                    mat[i][j] = max(max_around(mat, i, j) + i, 0)
                 else:
                     mat[i][j] = max_around(mat, i, j) + inc
             else:
                 if bestalign:
-                    mat[i][j] = max(max_around(mat, i, j) - gap, 0)
+                    mat[i][j] = max(max_around(mat, i, j) - int(i * 0.9 + 1), 0)
                 else:
                     mat[i][j] = max_around(mat, i, j) - gap
             if mat[i][j] > max_:
@@ -113,10 +113,23 @@ def get_path_mat(seq, tar, gap, inc, bestalign):
     m = iterate_mats(seq, tar, M, inc, gap, bestalign)
     return M, m
 
+def line_added(mat, additional):
+    x = len(target) - 1
+    for s in range(len(sequences)):
+        for i in range(1, len(mat[s][0])):
+            if seq[]
+
 
 if __name__ == '__main__':
-    gap = 1
+    gap = 3
     inc = 2
+    target = input("")
     M = get_path_mat(sequences, target, gap, inc, True)
     print_matrices(M[0])
     print(M[1])
+    while(True):
+        additional = input("")
+        target += additional
+        M = line_added(additional)
+        print_matrices(M[0])
+        print(M[1])
