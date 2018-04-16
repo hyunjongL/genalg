@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+service Greeter {
+  rpc newSession (sessionInquiry) returns (newSessionNum) {}
+  rpc append (appendRequest) returns (appendReply) {}
+  rpc addSeq (addSeqRequest) returns (addSeqReply) {}
+}
+
+message sessionInquiry {
+ int32 nonce = 1;
+}
+
+// The request message containing the user's name.
+message newSessionNum {
+  int32 sessionNum = 1;
+}
+
+message appendRequest {
+  int32 sessionNum = 1;
+  string label = 2;
+}
+
+message appendReply {
+  string message = 1;
+  //json
+  //{
+  //  'corpus_max_num'    : LENGTH OF CORPUS_MAX
+  //  'corpus_max'        : LIST OF CORPUS NUMBERS THAT HAS BEST MATCH
+  //  'aggregate_max_num' : LENGTH OF AGGREGATE MAX
+  //  'aggregate_max'     : LIST OF TYPES THAT HAS AGGREGATE BEST MATCH
+  //}
+}
+
+message addSeqRequest {
+  string message = 1;
+  //message = "TYPE_NAME.LABEL1 LABEL2 LABEL3 LABEL4"
+  //-> saved as ([LABEL1, LABEL2, LABEL3, LABEL4, ... , ], TYPE_NAME)
+}
+
+message addSeqReply {
+  string message = 1;
+  // message == OK -> success
+  // message == FAIL -> failed
+}
